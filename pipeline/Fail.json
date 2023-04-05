@@ -1,0 +1,51 @@
+{
+	"name": "Fail",
+	"properties": {
+		"activities": [
+			{
+				"name": "Fail1",
+				"type": "Fail",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"message": "Fail",
+					"errorCode": "100"
+				}
+			},
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Fail1",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": {
+						"value": "https://prod-25.francecentral.logic.azure.com:443/workflows/f1e11bc22fac4cbcab140902d48ecd77/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=n_thNo6vVIujLWQePuwduTOEkgljgwJNJyEKinXeIZ8",
+						"type": "Expression"
+					},
+					"method": "POST",
+					"body": {
+						"value": "{\n\"dataFactoryName\": \"@{pipeline().DataFactory}\",\n \"message\": \"@{activity('Fail1').error.message}\",\n \"pipelineName\":\"@{pipeline().Pipeline}\",\n\"pipelineRunId\": \"@{pipeline().RunId}\",\n \"status\": \"@{activity('Fail1').error.errorCode}\"\n}",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-04-05T07:17:22Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

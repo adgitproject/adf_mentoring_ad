@@ -1,0 +1,63 @@
+{
+	"name": "Master JSON",
+	"properties": {
+		"activities": [
+			{
+				"name": "Incremental JSON",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "Incremental JSON",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "DataLaketoSTG JSON",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Incremental JSON",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "DataLaketoSTG JSON",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "archive JSON",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DataLaketoSTG JSON",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "archive JSON",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2023-03-17T16:34:45Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

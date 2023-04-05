@@ -1,0 +1,22 @@
+{
+	"name": "DataMart",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault1",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "DataMart"
+			}
+		},
+		"connectVia": {
+			"referenceName": "Azure-IR-M8",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

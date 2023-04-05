@@ -1,0 +1,47 @@
+{
+	"name": "ControlMetadata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Path",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Delimiter",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Encoding",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EscapeCh",
+				"type": "nvarchar"
+			},
+			{
+				"name": "QuoteCh",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Destination",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "etl",
+			"table": "tControlMetadata"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

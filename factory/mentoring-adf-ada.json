@@ -1,0 +1,17 @@
+{
+	"name": "mentoring-adf-ada",
+	"properties": {
+		"globalParameters": {
+			"URI": {
+				"type": "string",
+				"value": "https://mentoring-key-vault-ad.vault.azure.net/secrets/HTTP/029882f485994be9900db52df6ad4878"
+			}
+		}
+	},
+	"location": "francecentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "db77a387-0184-43a2-8c56-425c2304a7d0",
+		"tenantId": "b41b72d0-4e9f-4c26-8a69-f949f367c91d"
+	}
+}
