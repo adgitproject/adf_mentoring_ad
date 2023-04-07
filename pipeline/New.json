@@ -11,6 +11,16 @@
 					"message": "1",
 					"errorCode": "1"
 				}
+			},
+			{
+				"name": "Fail2",
+				"type": "Fail",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"message": "2",
+					"errorCode": "2"
+				}
 			}
 		],
 		"annotations": []
