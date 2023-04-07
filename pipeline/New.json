@@ -1,6 +1,14 @@
 {
 	"name": "New",
 	"properties": {
+		"activities": [
+			{
+				"name": "Fail1",
+				"type": "Fail",
+				"dependsOn": [],
+				"userProperties": []
+			}
+		],
 		"annotations": []
 	}
 }
