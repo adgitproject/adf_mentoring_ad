@@ -20,6 +20,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'OnlineDataLake'"
 		},
+		"AzureBlobStorage1_properties_typeProperties_sasUri_secretName": {
+			"type": "string",
+			"defaultValue": "SASURI"
+		},
 		"DataMart_properties_typeProperties_connectionString_secretName": {
 			"type": "string",
 			"defaultValue": "DataMart"
@@ -33,6 +37,26 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"sasUri": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "AzureKeyVault1",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": "[parameters('AzureBlobStorage1_properties_typeProperties_sasUri_secretName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/AzureSqlDatabase')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -811,96 +835,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/DataMart')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/dbo_tMovies')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "AzureSqlDatabase",
-					"type": "LinkedServiceReference"
-				},
-				"annotations": [],
-				"type": "AzureSqlTable",
-				"schema": [
-					{
-						"name": "MovieId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "MovieIdNK",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "Budget",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "HomepagePath",
-						"type": "nvarchar"
-					},
-					{
-						"name": "Title",
-						"type": "nvarchar"
-					},
-					{
-						"name": "OriginalTitle",
-						"type": "nvarchar"
-					},
-					{
-						"name": "ReleaseDate",
-						"type": "date"
-					},
-					{
-						"name": "Revenue",
-						"type": "bigint",
-						"precision": 19
-					},
-					{
-						"name": "Runtime",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "MovieStatusId",
-						"type": "int",
-						"precision": 10
-					},
-					{
-						"name": "AvgVote",
-						"type": "decimal",
-						"precision": 3,
-						"scale": 1
-					},
-					{
-						"name": "CreatedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "ModifiedDate",
-						"type": "datetime",
-						"precision": 23,
-						"scale": 3
-					},
-					{
-						"name": "SrcFileName",
-						"type": "nvarchar"
-					}
-				],
-				"typeProperties": {
-					"schema": "dbo",
-					"table": "tMovies"
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/AzureSqlDatabase')]"
 			]
 		}
 	]

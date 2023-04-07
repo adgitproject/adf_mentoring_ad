@@ -86,9 +86,6 @@
 					},
 					"AzureKeyVault1_properties_typeProperties_baseUrl": {
 						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
-					},
-					"AzureBlobStorage1_properties_typeProperties_sasUri_secretName": {
-						"value": "[parameters('AzureBlobStorage1_properties_typeProperties_sasUri_secretName')]"
 					}
 				}
 			},
@@ -116,6 +113,9 @@
 					},
 					"OnlineDataLake_accountKey": {
 						"value": "[parameters('OnlineDataLake_accountKey')]"
+					},
+					"AzureBlobStorage1_properties_typeProperties_sasUri_secretName": {
+						"value": "[parameters('AzureBlobStorage1_properties_typeProperties_sasUri_secretName')]"
 					},
 					"DataMart_properties_typeProperties_connectionString_secretName": {
 						"value": "[parameters('DataMart_properties_typeProperties_connectionString_secretName')]"
